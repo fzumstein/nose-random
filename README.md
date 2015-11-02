@@ -1,6 +1,6 @@
 # nose-random
 
-`nose-random` is designed to facilitate "Monte-Carlo style" unit testing. The idea is to improve testing by running your code against a large number of randomly generated input scenarios.
+`nose-random` is designed to facilitate *[Monte-Carlo-style](https://en.wikipedia.org/wiki/Monte_Carlo_method)* unit testing. The idea is to improve testing by running your code against a large number of randomly generated input scenarios.
 
 Even with random testing it's important that test success/failure is reproducible, otherwise it's hard to
 * know if you've fixed a failing test
