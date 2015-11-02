@@ -20,3 +20,30 @@ or clone the repo and run `python setup.py install`.
     
 ## Usage
 
+The [example script](examples/tests.py) shows how to set up a randomized test. Running `nosetests` from the `examples` folder will produce the following output:
+
+    F.
+    ======================================================================
+    FAIL: failing_test (tests.RandomTestCase)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "c:\dev\nose-random\nose_random\__init__.py", line 62, in randomized_test
+        test(self, scenario)
+      File "C:\Dev\nose-random\examples\tests.py", line 13, in failing_test
+        self.assertLess(x, y)
+    AssertionError: 0.9903329105632304 not less than 0.0015605977653532221 with scenario 2FDO1B08J20A (27 of 1000)
+    
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.067s
+    
+This means that the `failing_test` function succeeded with the first 26 scenarios but then failed with the 27th. To debug this scenario you can run the same command specifying the scenario id.
+
+    nosetests --scenario=2FDO1B08J20A
+
+This will cause the tests to only be run against the failing scenario (note '1 of 1' as opposed to '27 of 1000').
+
+    AssertionError: 0.9903329105632304 not less than 0.0015605977653532221 with scenario 2FDO1B08J20A (1 of 1)
+    
+# PyCharm
+
+Note that the module will also pick up the `--scenario=` string if passed as a parameter to a PyCharm unittest run/debug configuration.
