@@ -2,12 +2,12 @@
 
 `nose-random` is designed to facilitate "Monte-Carlo style" unit testing. The idea is to improve testing by running your code against a large number of randomly generated input scenarios.
 
-Adding randomness potentially leads to the disadvantage that the test failures are non-reproducible, which means it's harder to
+Even with random testing it's important that test success/failure is reproducible, otherwise it's hard to
 * know if you've fixed a failing test
 * know if an test fails only on some machines or configurations and not others
 * debug a failing test
 
-`nose-random` avoids these problems because it 
+`nose-random` avoids this pitfall because it 
 * uses a fixed seed so that each test run is identical
 * tells you which scenario caused a test to fail
 * lets you to run the test only on a specific scenario to facilitate debugging
