@@ -2,6 +2,9 @@ __version__ = '0.0.1'
 
 from nose.plugins import Plugin
 import os
+import sys
+
+PY3 = (sys.version_info[0] == 3)
 
 from random import Random
 
@@ -62,6 +65,9 @@ def randomize(n, scenario_generator, seed=12038728732):
                     test(self, scenario)
                 except Exception as e:
                     import sys
-                    raise type(e), type(e)('%s with scenario %s (%i of %i)' % (e.message, rseed, i+1, nseeds)), sys.exc_info()[2]
+                    if PY3:
+                        raise type(e).with_traceback(type(e)('%s with scenario %s (%i of %i)' % (e.message, rseed, i+1, nseeds)), sys.exc_info()[2])
+                    else:
+                        raise (type(e), type(e)('%s with scenario %s (%i of %i)' % (e.message, rseed, i+1, nseeds)), sys.exc_info()[2])
         return randomized_test
     return decorator
